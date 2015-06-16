@@ -21,7 +21,6 @@ class HomeView(TemplateView):
         hashtag = '#' + request.POST.get('hashtag')
         while NUM_OF_ITERATIONS:
             r = api.request('search/tweets', {'q': hashtag})
-            #r = api.request('statuses/filter', {'track': hashtag})
             for item in r:
                 user_name = item.get('user').get('name').encode('ascii', 'ignore')  # ignore foreign unicode characters
                 user_id = item.get('user').get('id')
@@ -40,7 +39,6 @@ class HomeView(TemplateView):
 
         users_sorted_by_tweets = Twitter_User.objects.annotate(num_of_tweets=Count('tweet_by_user')).order_by(
             '-num_of_tweets')
-        print users_sorted_by_tweets[0].name
         result = 'crunched ' + str(Tweet.objects.all().count()) + ' tweets and ' + str(
             Twitter_User.objects.all().count()) + ' users. Most tweets were by user: ' + users_sorted_by_tweets[0].name
         return HttpResponse(result)
