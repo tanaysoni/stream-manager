@@ -27,6 +27,7 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'stream_manager',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,8 +59,12 @@ WSGI_APPLICATION = 'twitter.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'test11',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
